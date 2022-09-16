@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TodosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('api/todo', [TodosController::class,'list']);
+Route::post('api/todo', [TodosController::class,'saveTodo']);
+Route::post('api/todo/done/{id}', [TodosController::class,'markAsDone']);
+Route::delete('api/todo/delete/{id}', [TodosController::class,'deleteTodo']);
